@@ -1,0 +1,29 @@
+---
+import RatingIcon from '@/assets/rating.svg';
+import CheckIcon from '@/icons/check.svg';
+---
+
+<section>
+  <div class="flex gap-3 mb-2">
+    <RatingIcon width={120} />
+    <div class="flex gap-1 mb-2">
+      <span class="text-gray-700">4.7 |</span>
+      <span class="text-gray-600">1000+ Verified Reviews</span>
+    </div>
+  </div>
+  <h1 class="text-4xl font-semibold mb-6 tracking-tight">Vincofy 7 in 1 SalonPro Hair Styler</h1>
+  <div class="flex justify-between items-center gap-2 mb-5">
+    <div class="flex gap-3">
+      <div class="flex items-center gap-1">
+        <span class="text-primary text-3xl font-bold">£9.99 </span>
+        <span class="text-gray-600 text-lg line-through font-semibold">£99.99</span>
+      </div>
+    </div>
+    <a href="#" class="py-1.5 px-3 uppercase rounded-md bg-primary text-white">Clearance sale</a>
+  </div>
+  <ul>
+    <li class='flex items-center gap-2'><span class='rounded-full bg-primary size-6 grid place-items-center text-white'><CheckIcon fill-color='#FFF' width={20} height={20} /></span> One Tool, Endless Styles</li>
+		<li class='flex items-center gap-2'><CheckIcon width={20} height={20} /> 10,000 RPM Turbo Motor</li>
+		<li class='flex items-center gap-2'><CheckIcon width={20} height={20} /> Hair-Friendly Heat Control</li>
+  </ul>
+</section>

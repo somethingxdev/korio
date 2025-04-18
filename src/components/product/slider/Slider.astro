@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+
+const items = [
+  { src: import('@/assets/products/1.webp'), alt: 'Product 1' },
+  { src: import('@/assets/products/2.webp'), alt: 'Product 2' },
+  { src: import('@/assets/products/3.webp'), alt: 'Product 3' },
+  { src: import('@/assets/products/4.webp'), alt: 'Product 4' },
+  { src: import('@/assets/products/5.webp'), alt: 'Product 5' },
+  { src: import('@/assets/products/6.webp'), alt: 'Product 6' },
+  { src: import('@/assets/products/7.webp'), alt: 'Product 7' },
+  { src: import('@/assets/products/8.webp'), alt: 'Product 8' },
+];
+---
+
+<div class="embla">
+  <div class="embla__viewport overflow-hidden mb-2">
+    <div class="embla__container flex touch-pan-y gap-1">
+      {
+        items.map(item => (
+          <div class="embla__slide min-w-0 flex-[0_0_100%] cursor-grab">
+            <Image src={item.src} format="avif" alt={item.alt} class="h-555px rounded-2xl" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="embla-thumbs">
+    <div class="embla-thumbs__viewport overflow-hidden">
+      <div class="embla-thumbs__container flex flex-row gap-2">
+        {
+          items.map((item, index) => (
+            <div class={`embla-thumbs__slide min-w-0 flex-[0_0_20%] sm:flex-[0_0_15%] ${index === 0 ? 'embla-thumbs__slide--selected' : ''}`}>
+              <button type="button" class="embla-thumbs__slide__number w-full cursor-pointer">
+                <Image src={item.src} alt={item.alt} format="avif" class="h-20 w-full object-cover rounded" />
+              </button>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import '@/components/product/slider/index.ts';
+</script>
+
+<style is:global>
+  .embla-thumbs__slide {
+    opacity: 0.6;
+  }
+  .embla-thumbs__slide--selected {
+    opacity: 1;
+  }
+</style>

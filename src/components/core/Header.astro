@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<header class="py-3">
+  <div class="container mx-auto px-3">
+    <div class="flex justify-between items-center">
+      <a href="/"><Image class='max-w-25' src={import('@/assets/logo.png')} quality={100} alt="Logo" /></a>
+      <nav class="flex-auto">
+        <ul class="flex justify-end gap-5">
+          <li><a href="/">Features </a></li>
+          <li><a href="/about">Reviews</a></li>
+          <li><a href="/contact">FAQ</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
