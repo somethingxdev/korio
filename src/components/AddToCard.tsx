@@ -90,10 +90,6 @@ const AddToCard = () => {
 
               {cartItems.map((item) => (
                 <div key={item.id} className="flex gap-4">
-                  <div className="w-21 h-21 bg-muted rounded-md overflow-hidden flex-shrink-0">
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                  </div>
-
                   <div className="flex-1">
                     <h3 className="font-semibold leading-4.5 mb-1">{item.name}</h3>
                     <p className="text-sm text-muted-foreground">{item.color}</p>
