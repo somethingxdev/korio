@@ -113,7 +113,7 @@ const AddToCard = () => {
                 </div>
               ))}
 
-              <div className="border-t border-muted mt-auto">
+              <div className="border-t border-muted mt-auto pb-5">
                 {totalItems > 1 && (
                   <div className="bg-destructive/10 border border-destructive/20 rounded-md p-3">
                     <p className="text-center text-destructive font-medium">You can only checkout with 1 product.</p>
