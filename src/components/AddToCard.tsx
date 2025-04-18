@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { ShoppingCart } from 'lucide-react';
 const product = {
   id: 1,
   name: 'Vincofy 7 in 1 SalonPro Hair Styler',
@@ -55,11 +56,23 @@ const AddToCard = () => {
   return (
     <>
       <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-        <SheetTrigger asChild>
-          <Button className="w-full text-lg text-white" size="lg" onClick={addToCart}>
-            Add to Cart
-          </Button>
-        </SheetTrigger>
+        <div className="flex gap-2">
+          <SheetTrigger asChild>
+            <Button className="w-full text-lg text-white" size="lg" onClick={addToCart}>
+              Add to Cart
+            </Button>
+          </SheetTrigger>
+        </div>
+
+        {/* Фиксированная иконка корзины */}
+        <div className="fixed bottom-5 right-5 z-50">
+          <SheetTrigger asChild>
+            <button className="bg-primary cursor-pointer text-white p-3 rounded-full shadow-lg flex items-center justify-center relative transition-all" aria-label="Open cart">
+              <ShoppingCart size={24} />
+              {totalItems > 0 && <span className="absolute -top-2 -right-2 bg-destructive text-white text-xs font-bold rounded-full size-6 flex items-center justify-center">{totalItems}</span>}
+            </button>
+          </SheetTrigger>
+        </div>
         <SheetContent className="overflow-y-auto">
           <SheetHeader className="border-b border-muted pb-4">
             <SheetTitle className="text-2xl font-bold">Cart</SheetTitle>
@@ -138,7 +151,7 @@ const AddToCard = () => {
             <div className="flex flex-col items-center justify-center h-[50vh] text-center">
               <p className="text-muted-foreground mb-4">Your cart is empty</p>
               <SheetClose asChild>
-                <Button className='text-white'>Continue Shopping</Button>
+                <Button className="text-white">Continue Shopping</Button>
               </SheetClose>
             </div>
           )}
