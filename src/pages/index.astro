@@ -1,14 +1,84 @@
 ---
+import { Image } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
 import Slider from '@/components/product/slider/Slider.astro';
 import Product from '@/components/product/Product.astro';
-import Layout from '../layouts/Layout.astro';
+import Brands from '@/components/Brands.astro';
+import Customers from '@/components/Customers.astro';
+import CheckIcon from '@/icons/check.svg';
+import { ADVANTAGES } from '@/site.content.ts';
+import Faq from '@/components/Faq.astro';
 ---
 
 <Layout>
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-2 gap-10 pt-10">
+    <section class="grid md:grid-cols-2 gap-10 pt-20">
       <Slider />
       <Product />
-    </div>
+    </section>
+    <Brands />
+
+    <section id="features">
+      <div class="flex flex-col md:flex-row items-center bg-neutral-50 border border-muted rounded-md overflow-hidden mb-10">
+        <Image src={import('@/assets/products/5.webp')} alt="product" class="md:max-w-[350px] lg:max-w-[550px]" />
+        <div class="flex flex-col gap-5 p-5 md:px-10">
+          <h2 class="text-2xl font-semibold">{ADVANTAGES[0].card_1[0].title}</h2>
+          <p class="text-secondary text-pretty font-medium">{ADVANTAGES[0].card_1[0].description}</p>
+          <ul class="space-y-3">
+            {
+              ADVANTAGES[0].card_1[0].powerhouseItems.map((item) => (
+                <li class="flex items-center gap-3">
+                  <span class="size-7 shrink-0 bg-primary rounded-full grid place-items-center text-white">
+                    <CheckIcon />
+                  </span>
+                  <div class="flex flex-col">
+                    <h3 class="font-bold">{item.label}</h3>
+                    <p class="text-secondary">{item.description}</p>
+                  </div>
+                </li>
+              )) 
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-center bg-neutral-50 border border-muted rounded-md overflow-hidden">
+        <div class="flex flex-col gap-5 p-5 md:p-10">
+          <h2 class="text-2xl font-semibold">{ADVANTAGES[0].card_2[0].title}</h2>
+          <p class="text-secondary text-pretty font-medium">{ADVANTAGES[0].card_2[0].description}</p>
+        </div>
+        <Image src={import('@/assets/products/8.webp')} alt="product" class="order-first md:order-last md:max-w-[350px] lg:max-w-[550px]" />
+      </div>
+    </section>
+
+    <Customers />
+
+    <Faq />
+
+    <section class="my-10 bg-neutral-50 border border-muted p-5 rounded-md">
+      <div class="flex flex-col justify-center items-center text-center gap-2">
+        <Image src={import('@/assets/money-back.svg')} alt="money back" class="max-w-[100px]" />
+        <h2 class="text-xl sm:text-2xl font-semibold">Buy with Confidence - It’s 100% Risk-Free!</h2>
+        <p class="max-w-3xl mx-auto">In case you aren’t satisfied, we are offering you our 30-Day money-back guarantee. Send your package back and get a full refund, no questions asked.</p>
+      </div>
+    </section>
+
+    <section class="my-10 bg-neutral-50 border border-muted p-5 rounded-md">
+      <div class="flex flex-col md:flex-row justify-around items-center gap-5">
+        <Image src={import('@/assets/consumer.jpg')} alt="consumer" format="avif" class="sm:max-w-[390px] rounded-lg object-cover" />
+        <div class='flex flex-col gap-3 max-w-[505px]'>
+          <Image src={import('@/assets/quote.webp')} alt="quote" class="w-10" />
+          <p class="italic text-center font-medium">
+            What began in 1997 as a humble side business has rapidly evolved into one of the nation’s leading partners in the import and export of consumer goods. To say I’m proud of what we’ve
+            accomplished would be an understatement.
+          </p>
+          <div class="flex items-center justify-center gap-2">
+            <p>Kevin Grant</p>
+            <Image src={import('@/assets/kevin-grant.webp')} alt="Kevin Grant" class="w-25 h-auto" />
+          </div>
+          <Image src={import('@/assets/quote.webp')} alt="quote" class="w-10 rotate-180 self-end" />
+        </div>
+      </div>
+    </section>
   </div>
 </Layout>

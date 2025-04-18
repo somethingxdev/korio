@@ -1,0 +1,137 @@
+---
+import Stars from '@/icons/stars.svg';
+import CheckIcon from '@/icons/check.svg';
+import { Image } from 'astro:assets';
+
+const items = [
+  {
+    name: 'Emily G.',
+    city: 'Manchester',
+    date: 'November 10, 2024',
+    title: 'Game Changer for My Morning Routine',
+    text: 'I used to spend nearly 45 minutes drying and straightening my thick hair before work. This tool does it in 15 minutes, tops. The air wrap feature is genius – I actually get volume and curl now without burning my fingers.',
+    photo: import('@/assets/reviews/review-1.webp'),
+    alt: 'Game Changer for My Morning Routine',
+  },
+  {
+    name: 'Anna A.',
+    city: 'London',
+    date: 'October 3, 2024',
+    title: 'Better Than Other Expensive Stylers',
+    text: "Honestly, I wasn't expecting much for its price, but wow. The motor is powerful and it doesn't fry my hair like some other budget devices. It also comes with so many accessories that I can change my look at any time. It arrived in 3 days.",
+    photo: import('@/assets/reviews/review-2.jpg'),
+    alt: 'Better Than Other Expensive Stylers',
+  },
+  {
+    name: 'Andrew T.',
+    city: 'Bristol',
+    date: 'December 21, 2024',
+    title: 'Love it!',
+    text: 'Everything my wife needs in one tool – so easy to use and makes her hair look great!',
+    photo: import('@/assets/reviews/review-3.webp'),
+    alt: 'Love it!',
+  },
+  {
+    name: 'Harry M.',
+    city: 'Leeds',
+    date: 'December 23, 2024',
+    title: 'Brilliant value!',
+    text: 'For the price, this is great! Works like a charm!',
+    photo: import('@/assets/reviews/review-4.webp'),
+    alt: 'Brilliant value!',
+  },
+];
+---
+
+<section class="my-10" id='reviews'>
+  <div class="flex flex-col items-center justify-center gap-2 mb-10">
+    <h2 class="text-2xl font-semibold text-center">Thousands of Happy Customers</h2>
+    <span class="w-[100px] h-1.5 bg-primary rounded-full"></span>
+  </div>
+
+  <div class="bg-neutral-50 border border-muted p-5 mb-10 rounded-md">
+    <div class="flex flex-col md:flex-row justify-center items-center md:justify-between gap-5">
+      <div class="flex flex-col">
+        <div class="border-b border-muted pb-5 mb-5">
+          <Image src={import('@/assets/trustpilot.svg')} alt="truspilot" class="md:max-w-[350px] xl:max-w-[455px]" />
+        </div>
+        <div class="flex items-center flex-wrap sm:flex-nowrap justify-center gap-2">
+          <span class="text-lg font-semibold">4.7</span>
+          <Image src={import('@/assets/rating.svg')} alt="rating" class="max-w-[130px]" />
+          <span class="text-lg font-semibold">Excellent</span>
+          <p class="text-secondary text-pretty font-medium ml-3">Based On <strong>8,759</strong> Reviews</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <div class="grid grid-cols-[1fr_140px_1fr] items-center gap-2">
+          <Image src={import('@/assets/reviews/stars-5.svg')} alt="stars rating" />
+          <Image class="h-5" src={import('@/assets/reviews/indicator-full.webp')} alt="stars rating" />
+          <span class="text-gray font-medium">5,372</span>
+        </div>
+        <div class="grid grid-cols-[1fr_140px_1fr] items-center gap-2">
+          <Image src={import('@/assets/reviews/stars-4.svg')} alt="stars rating" />
+          <Image class="h-5" src={import('@/assets/reviews/indicator-half.webp')} alt="stars rating" />
+          <span class="text-gray font-medium">2,876</span>
+        </div>
+        <div class="grid grid-cols-[1fr_140px_1fr] items-center gap-2">
+          <Image src={import('@/assets/reviews/stars-3.svg')} alt="stars rating" />
+          <Image class="h-5" src={import('@/assets/reviews/indicator-none.webp')} alt="stars rating" />
+          <span class="text-gray font-medium">5,372</span>
+        </div>
+        <div class="grid grid-cols-[1fr_140px_1fr] items-center gap-2">
+          <Image src={import('@/assets/reviews/stars-2.svg')} alt="stars rating" />
+          <Image class="h-5" src={import('@/assets/reviews/indicator-none.webp')} alt="stars rating" />
+          <span class="text-gray font-medium">5,372</span>
+        </div>
+        <div class="grid grid-cols-[1fr_140px_1fr] items-center gap-2">
+          <Image src={import('@/assets/reviews/stars-1.svg')} alt="stars rating" />
+          <Image class="h-5" src={import('@/assets/reviews/indicator-none.webp')} alt="stars rating" />
+          <span class="text-gray font-medium">5,372</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    {
+      items.map((item) => (
+        <div class="border border-muted rounded-md p-5 flex flex-col gap-4">
+          <div class="flex justify-between items-start">
+            <div class="flex gap-3 items-center">
+              <div class="size-12 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <>
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold">{item.name}</h3>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs bg-muted px-1.5 py-0.5 rounded">{item.city}</span>
+                  <Stars />
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-green font-medium">
+              <span class="size-3 bg-green text-white rounded-full grid place-items-center">
+                <CheckIcon width={10} height={10} />
+              </span>
+              Verified
+            </div>
+          </div>
+          <div class="flex gap-5 justify-between">
+            <div class="space-y-3">
+              <h4 class="font-semibold">{item.title}</h4>
+              <p class="text-xs sm:text-sm">{item.text}</p>
+              <p class="text-sm text-gray">{item.date}</p>
+            </div>
+            <Image src={item.photo} class="size-25 sm:size-30 shrink-0 object-cover rounded-md" format="avif" alt={item.alt} />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

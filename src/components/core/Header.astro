@@ -6,12 +6,12 @@ import { Image } from 'astro:assets';
   <div class="container mx-auto px-3">
     <div class="flex justify-between items-center">
       <a href="/"><Image class='max-w-25' src={import('@/assets/logo.png')} quality={100} alt="Logo" /></a>
-      <nav class="flex-auto">
+      <nav class="flex-auto hidden md:block">
         <ul class="flex justify-end gap-5">
-          <li><a href="/">Features </a></li>
-          <li><a href="/about">Reviews</a></li>
-          <li><a href="/contact">FAQ</a></li>
-          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="#features">Features </a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
         </ul>
       </nav>
     </div>

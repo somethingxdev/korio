@@ -17,9 +17,9 @@ const items = [
   <div class="embla__viewport overflow-hidden mb-2">
     <div class="embla__container flex touch-pan-y gap-1">
       {
-        items.map(item => (
-          <div class="embla__slide min-w-0 flex-[0_0_100%] cursor-grab">
-            <Image src={item.src} format="avif" alt={item.alt} class="h-555px rounded-2xl" />
+        items.map((item) => (
+          <div class="embla__slide min-w-0 flex-[0_0_100%] size-full cursor-grab">
+            <Image src={item.src} format="avif" alt={item.alt} class="h-[350px] md:h-[605px] object-contain rounded-2xl" />
           </div>
         ))
       }
@@ -27,12 +27,12 @@ const items = [
   </div>
   <div class="embla-thumbs">
     <div class="embla-thumbs__viewport overflow-hidden">
-      <div class="embla-thumbs__container flex flex-row gap-2">
+      <div class="embla-thumbs__container flex justify-center flex-row gap-1">
         {
           items.map((item, index) => (
-            <div class={`embla-thumbs__slide min-w-0 flex-[0_0_20%] sm:flex-[0_0_15%] ${index === 0 ? 'embla-thumbs__slide--selected' : ''}`}>
-              <button type="button" class="embla-thumbs__slide__number w-full cursor-pointer">
-                <Image src={item.src} alt={item.alt} format="avif" class="h-20 w-full object-cover rounded" />
+            <div class={`embla-thumbs__slide min-w-0 flex-[0_0_12%]  ${index === 0 ? 'embla-thumbs__slide--selected' : ''}`}>
+              <button type="button" class="embla-thumbs__slide__number w-full h-16 cursor-pointer overflow-hidden rounded">
+                <Image src={item.src} alt={item.alt} format="avif" class="size-full object-scale-down" />
               </button>
             </div>
           ))

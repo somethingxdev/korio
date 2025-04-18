@@ -1,0 +1,45 @@
+---
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/starwind/accordion';
+
+const items = [
+  {
+    value: 'item-1',
+    question: 'How soon will my order arrive?',
+    answer: `We ship your package the same day you place your order. Delivery typically takes 24-36 hours, depending on your location. Once your order is shipped, you’ll receive a confirmation email with a tracking number to track its progress.`,
+  },
+  {
+    value: 'item-2',
+    question: 'Do you offer free and tracked shipping?',
+    answer: `Yes, we provide <strong>free tracked shipping</strong> on all orders. Simply use the tracking number from your confirmation email to monitor your order's status.`,
+  },
+  {
+    value: 'item-3',
+    question: 'Is the clearance sale still ongoing?',
+    answer: `Our Limited Clearance Sale is still live! It runs until stocks sell out or the countdown timer hits zero—whichever comes first. Don’t miss out!`,
+  },
+  {
+    value: 'item-4',
+    question: 'Does the product include a warranty?',
+    answer: `Yes, all our products come with a <strong>30-day money-back guarantee</strong> covering any manufacturing defects or malfunctions. If you experience any issues, simply reach out to our customer service team, and we’ll assist you with the return or replacement process.`,
+  },
+];
+---
+
+<section id="faq" class="my-10 md:my-20">
+  <div class="flex flex-col items-center justify-center gap-2 mb-5">
+    <h2 class="text-2xl font-semibold">Frequently Asked Questions</h2>
+    <span class="w-[100px] h-1.5 bg-primary rounded-full"></span>
+  </div>
+  <Accordion type="multiple" defaultValue={items[0].value}>
+    {
+      items.map((item) => (
+        <AccordionItem value={item.value}>
+          <AccordionTrigger>{item.question}</AccordionTrigger>
+          <AccordionContent>
+            <div set:html={item.answer} />
+          </AccordionContent>
+        </AccordionItem>
+      ))
+    }
+  </Accordion>
+</section>

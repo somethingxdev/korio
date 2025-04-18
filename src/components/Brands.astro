@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section class="full-bleed py-5 my-10">
+  <div class="scroller overflow-hidden" data-speed="slow">
+    <div class="flex justify-center gap-10 scroller__inner z-5 relative">
+      <div class="flex h-auto mx-5 justify-center items-center">
+        <Image class="h-10 w-auto" src={import('@/assets/brands/1.png')} alt="brand" />
+      </div>
+      <div class="flex h-auto mx-5 justify-center items-center">
+        <Image class="h-10 w-auto" src={import('@/assets/brands/2.png')} alt="brand" />
+      </div>
+      <div class="flex h-auto mx-5 justify-center items-center">
+        <Image class="h-10 w-auto" src={import('@/assets/brands/3.png')} alt="brand" />
+      </div>
+      <div class="flex h-auto mx-5 justify-center items-center">
+        <Image class="h-10 w-auto" src={import('@/assets/brands/4.png')} alt="brand" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .full-bleed {
+    border-image: conic-gradient(var(--color-primary) 0 0) fill 0//0 100vw; 
+  }
+
+  .scroller[data-animated='true'] .scroller__inner {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+  }
+
+  .scroller[data-direction='right'] {
+    --_animation-direction: reverse;
+  }
+
+  .scroller[data-direction='left'] {
+    --_animation-direction: forwards;
+  }
+
+  .scroller[data-speed='fast'] {
+    --_animation-duration: 20s;
+  }
+
+  .scroller[data-speed='slow'] {
+    --_animation-duration: 60s;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+</style>
+
+<script>
+  const scroller = document.querySelector('.scroller') as HTMLElement;
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addAnimation();
+  }
+
+  function addAnimation() {
+    if (!scroller) return;
+
+    scroller.setAttribute('data-animated', 'true');
+
+    const scrollerInner = scroller.querySelector('.scroller__inner') as HTMLElement;
+    if (!scrollerInner) return;
+
+    const scrollerContent = Array.from(scrollerInner.children);
+
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true) as HTMLElement;
+      duplicatedItem.setAttribute('aria-hidden', 'true');
+      scrollerInner.appendChild(duplicatedItem);
+    });
+  }
+</script>

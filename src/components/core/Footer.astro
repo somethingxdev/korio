@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { Mail, Phone } from 'lucide-react';
+---
+
+<footer class="bg-neutral-900 text-neutral-100 pt-10 pb-2 rounded-t-2xl w-full mt-10">
+  <div class="container">
+    <div class="grid md:grid-cols-3 gap-5 md:gap-10 pb-5 mb-5">
+      <div>
+        <Image src={import('@/assets/logo.png')} alt="Kureio" class="invert mb-2" />
+        <p class="text-sm leading-relaxed text-neutral-300">
+          Thank you for shopping with us! Explore our wide range of premium sneakers and more at amazing prices. Enjoy fast delivery and hassle-free returns. Shop now and grab your next pair for just
+          £9.99!
+        </p>
+      </div>
+
+      <div class="flex flex-col md:mx-auto gap-2" id='contact-us'>
+        <h3 class="font-semibold mb-2 text-base">CUSTOMER CARE</h3>
+        <div class="flex items-center gap-2 text-sm text-neutral-300">
+          <Phone size={20} />
+          <span>+44-398-227-060</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm text-neutral-300">
+          <Mail size={20} />
+          <span>info@kureio.com</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 md:mx-auto">
+        <h3 class="font-semibold mb-2 text-base">POLICIES</h3>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#" class="hover:underline text-neutral-300">Privacy Policy</a></li>
+          <li><a href="#" class="hover:underline text-neutral-300">Refund & Returns</a></li>
+          <li><a href="#" class="hover:underline text-neutral-300">Shipping Policy</a></li>
+          <li><a href="#" class="hover:underline text-neutral-300">Terms of Service</a></li>
+          <li><a href="#" class="hover:underline text-neutral-300">Payment Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center font-semibold text-white py-3 border-t border-gray/20">© 2025 Kureio. All Rights Reserved.</p>
+  </div>
+</footer>
