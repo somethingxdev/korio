@@ -1,22 +1,21 @@
 ---
-import '@/styles/global.css'
-import { Font } from 'astro:assets'
-import Banner from '@/components/core/Banner.astro'
-import Header from '@/components/core/Header.astro'
-import Footer from '@/components/core/Footer.astro'
+import '@/styles/global.css';
+import { Font } from 'astro:assets';
+import Banner from '@/components/core/Banner.astro';
+import Header from '@/components/core/Header.astro';
+import Footer from '@/components/core/Footer.astro';
 ---
 
 <!doctype html>
-<html lang="en" class='antialiased scroll-smooth'>
+<html lang="en" class="antialiased scroll-smooth">
   <head>
-    <Font cssVariable='--font-sans' preload />
+    <Font cssVariable="--font-sans" preload />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <title>Kureio︱Clearance Sale</title>
   </head>
-  <body class='font-sans'>
+  <body class="font-sans">
     <Banner />
     <Header />
     <slot />

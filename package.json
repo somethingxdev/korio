@@ -17,7 +17,8 @@
     "@tailwindcss/vite": "^4.1.4",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "astro": "^5.7.2",
+    "astro": "^5.7.4",
+    "astro-relative-links": "^0.4.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.6.0",
@@ -32,8 +33,6 @@
   },
   "devDependencies": {
     "prettier": "^3.5.3",
-    "prettier-plugin-astro": "^0.14.1",
-    "tailwindcss-full-bleed": "^2.0.2",
-    "unocss": "66.1.0-beta.11"
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

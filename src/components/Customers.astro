@@ -43,7 +43,7 @@ const items = [
 ];
 ---
 
-<section class="my-10" id='reviews'>
+<section class="my-10" id="reviews">
   <div class="flex flex-col items-center justify-center gap-2 mb-10">
     <h2 class="text-2xl font-semibold text-center">Thousands of Happy Customers</h2>
     <span class="w-[100px] h-1.5 bg-primary rounded-full"></span>
@@ -95,16 +95,14 @@ const items = [
 
   <div class="grid md:grid-cols-2 gap-6">
     {
-      items.map((item) => (
+      items.map(item => (
         <div class="border border-muted rounded-md p-5 flex flex-col gap-4">
           <div class="flex justify-between items-start">
             <div class="flex gap-3 items-center">
               <div class="size-12 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <>
-                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </>
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
               </div>
               <div>

@@ -11,6 +11,7 @@ import Faq from '@/components/Faq.astro';
 ---
 
 <Layout>
+  <a href="{offer}" id="offer" class="absolute invisible pointer-events-none opacity-0"></a>
   <div class="container mx-auto px-4 relative">
     <section class="grid md:grid-cols-2 gap-10 pt-20">
       <Slider />
@@ -26,7 +27,7 @@ import Faq from '@/components/Faq.astro';
           <p class="text-secondary text-pretty font-medium">{ADVANTAGES[0].card_1[0].description}</p>
           <ul class="space-y-3">
             {
-              ADVANTAGES[0].card_1[0].powerhouseItems.map((item) => (
+              ADVANTAGES[0].card_1[0].powerhouseItems.map(item => (
                 <li class="flex items-center gap-3">
                   <span class="size-7 shrink-0 bg-primary rounded-full grid place-items-center text-white">
                     <CheckIcon />
@@ -36,7 +37,7 @@ import Faq from '@/components/Faq.astro';
                     <p class="text-secondary">{item.description}</p>
                   </div>
                 </li>
-              )) 
+              ))
             }
           </ul>
         </div>
@@ -65,8 +66,8 @@ import Faq from '@/components/Faq.astro';
 
     <section class="my-10 bg-neutral-50 border border-muted p-5 rounded-md">
       <div class="flex flex-col md:flex-row justify-around items-center gap-5">
-        <Image src={import('@/assets/consumer.jpg')} alt="consumer" format="avif" class="sm:max-w-[390px] rounded-lg object-cover" />
-        <div class='flex flex-col gap-3 max-w-[505px]'>
+        <Image src={import('@/assets/consumer.jpg')} format="avif" alt="consumer" class="sm:max-w-[390px] rounded-lg object-cover" />
+        <div class="flex flex-col gap-3 max-w-[505px]">
           <Image src={import('@/assets/quote.webp')} alt="quote" class="w-10" />
           <p class="italic text-center font-medium">
             What began in 1997 as a humble side business has rapidly evolved into one of the nation’s leading partners in the import and export of consumer goods. To say I’m proud of what we’ve

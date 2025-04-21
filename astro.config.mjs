@@ -1,12 +1,13 @@
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
+import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 export default defineConfig({
-	experimental: {
+  experimental: {
     fonts: [
       {
         provider: fontProviders.google(),
@@ -18,5 +19,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [react()],
+  integrations: [react(), relativeLinks()],
 });

@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import RatingIcon from '@/assets/rating.svg';
 import FlagIcon from '@/icons/flag.svg';
 import CheckIcon from '@/icons/check.svg';
 import { Progress } from '@/components/ui/progress';
@@ -8,9 +7,9 @@ import AddToCard from '@/components/AddToCard';
 ---
 
 <section>
-  <div class="flex gap-3 mb-2">
-    <RatingIcon width={120} />
-    <div class="flex gap-1 mb-2">
+  <div class="flex items-center gap-3 mb-3">
+    <Image src={import('@/assets/rating.svg')} class='max-w-[120px]' alt='rating' />
+    <div class="flex gap-1">
       <span class="text-gray-700">4.7 |</span>
       <span class="text-gray-600">1000+ Verified Reviews</span>
     </div>
@@ -48,15 +47,15 @@ import AddToCard from '@/components/AddToCard';
     </ul>
     <div>
       <p class="mb-3">Colour: <strong>Purple</strong></p>
-      <Image src={import('@/assets/products/1.webp')} alt="product" format="avif" width={53} height={53} class="border h-53px object-contain rounded border-stone-950" />
+      <Image src={import('@/assets/products/1.webp')} alt="product" width={53} height={53} class="border h-53px object-contain rounded border-stone-950" />
     </div>
 
     <div>
       <p class="text-muted-foreground font-semibold text-sm mb-2">Hurry, only 31 items left in stock!</p>
-      <Progress value={31} client:load />
+      <Progress value={31} client:only="react" />
     </div>
 
-    <AddToCard client:load />
+    <AddToCard client:only="react" />
 
     <div class="border border-muted rounded-md p-3 mt-5">
       <div class="flex justify-center items-center gap-5 pb-5 mb-5 border-b border-muted">
