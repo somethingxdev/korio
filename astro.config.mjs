@@ -19,5 +19,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [react(), relativeLinks()],
+  integrations: [relativeLinks(), react(), ],
 });

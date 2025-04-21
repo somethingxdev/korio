@@ -38,11 +38,12 @@ import WalletIcon from '@/icons/wallet.svg';
       localStorage.setItem(STORAGE_KEY, String(end));
     }
 
-    const timerEl = document.getElementById('timer') as HTMLDivElement;
-    if (!timerEl) {
-      return;
-    }
-    const pad = (n: number): string => n.toString().padStart(2, '0');
+    const timerEl = document.getElementById('timer') as HTMLElement;
+    if (!timerEl) return;
+
+    const pad = (n: number) => String(n).padStart(2, '0');
+
+    let ticker: number;
 
     function update(): void {
       const diff = end - Date.now();
@@ -62,7 +63,7 @@ import WalletIcon from '@/icons/wallet.svg';
       timerEl.textContent = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
     }
 
-    update();
-    const ticker = window.setInterval(update, 1000);
+    ticker = window.setInterval(update, 1000);
+    update(); 
   });
 </script>
