@@ -7,7 +7,9 @@ import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/',
+  build: {
+    assetsPrefix: 'https://slotace.site/lander/sweep_8/',
+  },
   experimental: {
     fonts: [
       {
