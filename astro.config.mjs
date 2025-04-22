@@ -7,6 +7,7 @@ import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 export default defineConfig({
+  base: '/',
   experimental: {
     fonts: [
       {

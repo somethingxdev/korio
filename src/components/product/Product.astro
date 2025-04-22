@@ -52,10 +52,10 @@ import AddToCard from '@/components/AddToCard';
 
     <div>
       <p class="text-muted-foreground font-semibold text-sm mb-2">Hurry, only 31 items left in stock!</p>
-      <Progress value={31} client:only='react' />
+      <Progress value={31} client:load />
     </div>
 
-    <AddToCard client:only="react" />
+    <AddToCard client:only='react' />
 
     <div class="border border-muted rounded-md p-3 mt-5">
       <div class="flex justify-center items-center gap-5 pb-5 mb-5 border-b border-muted">
