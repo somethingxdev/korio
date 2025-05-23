@@ -1,15 +1,11 @@
-import tailwindcss from '@tailwindcss/vite';
+
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import react from '@astrojs/react';
 import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 export default defineConfig({
-  build: {
-    assetsPrefix: 'https://slotace.site/lander/sweep_8/',
-  },
   experimental: {
     fonts: [
       {
@@ -22,5 +18,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [relativeLinks(), react(), ],
+  integrations: [relativeLinks()],
 });

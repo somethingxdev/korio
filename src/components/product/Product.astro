@@ -2,13 +2,12 @@
 import { Image } from 'astro:assets';
 import FlagIcon from '@/icons/flag.svg';
 import CheckIcon from '@/icons/check.svg';
-import { Progress } from '@/components/ui/progress';
-import AddToCard from '@/components/AddToCard';
+import AddProductToCard from '@/components/AddProductToCard.astro';
 ---
 
 <section>
   <div class="flex items-center gap-3 mb-3">
-    <Image src={import('@/assets/rating.svg')} class='max-w-[120px]' alt='rating' />
+    <Image src={import('@/assets/rating.svg')} class="max-w-[120px]" alt="rating" />
     <div class="flex gap-1">
       <span class="text-gray-700">4.7 |</span>
       <span class="text-gray-600">1000+ Verified Reviews</span>
@@ -52,10 +51,10 @@ import AddToCard from '@/components/AddToCard';
 
     <div>
       <p class="text-muted-foreground font-semibold text-sm mb-2">Hurry, only 31 items left in stock!</p>
-      <Progress value={31} client:load />
+      <div class="relative shrink-0 h-1.5 w-full overflow-hidden rounded-full bg-muted"><div class="h-full w-full flex-1 bg-primary transition-all" style="transform: translateX(-69%);"></div></div>
     </div>
 
-    <AddToCard client:only='react' />
+    <AddProductToCard />
 
     <div class="border border-muted rounded-md p-3 mt-5">
       <div class="flex justify-center items-center gap-5 pb-5 mb-5 border-b border-muted">

@@ -32,7 +32,7 @@ const items = [
           items.map((item, index) => (
             <div class={`embla-thumbs__slide min-w-0 flex-[0_0_12%]  ${index === 0 ? 'embla-thumbs__slide--selected' : ''}`}>
               <button type="button" class="embla-thumbs__slide__number w-full h-16 cursor-pointer overflow-hidden rounded">
-                <Image src={item.src} alt={item.alt} format="avif" class="size-full object-scale-down" />
+                <Image src={item.src} alt={item.alt} class="size-full object-scale-down" />
               </button>
             </div>
           ))

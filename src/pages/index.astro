@@ -6,7 +6,7 @@ import Product from '@/components/product/Product.astro';
 import Brands from '@/components/Brands.astro';
 import Customers from '@/components/Customers.astro';
 import CheckIcon from '@/icons/check.svg';
-import { ADVANTAGES } from '@/site.content.ts';
+import { ADVANTAGES } from '@/site.content';
 import Faq from '@/components/Faq.astro';
 ---
 
@@ -66,7 +66,7 @@ import Faq from '@/components/Faq.astro';
 
     <section class="my-10 bg-neutral-50 border border-muted p-5 rounded-md">
       <div class="flex flex-col md:flex-row justify-around items-center gap-5">
-        <Image src={import('@/assets/consumer.jpg')} format="avif" alt="consumer" class="sm:max-w-[390px] rounded-lg object-cover" />
+        <Image src={import('@/assets/consumer.jpg')}  alt="consumer" class="sm:max-w-[390px] rounded-lg object-cover" />
         <div class="flex flex-col gap-3 max-w-[505px]">
           <Image src={import('@/assets/quote.webp')} alt="quote" class="w-10" />
           <p class="italic text-center font-medium">

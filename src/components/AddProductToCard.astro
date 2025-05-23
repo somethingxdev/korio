@@ -1,0 +1,292 @@
+<div class="relative">
+  <button id="add-to-cart-btn" class="w-full cursor-pointer text-lg text-white bg-stone-950 py-2.5 px-4 rounded-md hover:bg-stone-800 transition-colors"> Add to Cart </button>
+
+  <button id="cart-icon" class="fixed bottom-5 right-5 z-50 bg-stone-950 cursor-pointer text-white p-3 rounded-full shadow-lg flex items-center justify-center transition-all" aria-label="Open cart">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-shopping-cart-icon lucide-shopping-cart"
+      ><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg
+    >
+    <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full size-6 items-center justify-center hidden">0</span>
+  </button>
+
+  <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity"></div>
+
+  <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-xl overflow-y-auto">
+    <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+      <h2 class="text-2xl font-bold">Cart</h2>
+      <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+        >
+      </button>
+    </div>
+
+    <div class="p-4">
+      <div id="empty-cart-message" class="flex flex-col items-center justify-center py-16 text-center">
+        <p class="text-gray-500 mb-6">Your cart is empty</p>
+        <button id="continue-shopping-btn" class="px-6 py-2 bg-stone-950 text-white rounded-md hover:bg-stone-800 transition-colors"> Continue Shopping </button>
+      </div>
+
+      <div id="cart-content">
+        <div id="quantity-warning" class="bg-red-50 border border-red-200 rounded-md p-3 mb-4 hidden">
+          <div>
+            <p class="text-center text-red-600 font-medium mb-3">Note: For this clearance sale we limit orders to 2 products per person.</p>
+            <p class="text-center text-red-600 font-medium">You can only checkout with 1 product.</p>
+            <div class="mt-2 h-1 bg-red-200 rounded-full overflow-hidden">
+              <div class="h-full bg-red-500 w-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4 py-4 border-b border-gray-200">
+          <div class="flex-1">
+            <h3 class="font-semibold leading-tight mb-1">Vincofy 7 in 1 SalonPro Hair Styler</h3>
+            <p class="text-sm text-gray-500">Purple</p>
+            <p class="font-semibold mt-1">£9.99</p>
+          </div>
+          <div class="flex flex-col items-center gap-3 mt-2">
+            <div class="flex items-center border border-gray-300 rounded-md">
+              <button id="decrement-quantity" class="px-2 py-1 text-gray-500 hover:bg-gray-100"> - </button>
+              <span id="quantity-display" class="w-8 mx-auto text-center">0</span>
+              <button id="increment-quantity" class="px-2 py-1 text-gray-500 hover:bg-gray-100"> + </button>
+            </div>
+
+            <button id="remove-item" class="text-sm text-gray-500 hover:text-red-500"> Remove </button>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <div class="flex justify-between mb-2">
+            <span>Subtotal</span>
+            <span id="total-price">£0.00</span>
+          </div>
+          <div class="flex justify-between mb-4">
+            <span>Shipping</span>
+            <span>Free</span>
+          </div>
+          <div class="flex justify-between font-semibold text-lg border-t border-gray-200 pt-2 pb-5">
+            <span>Total</span>
+            <span id="total-price-with-shipping">£0.00</span>
+          </div>
+
+          <a href="{offer}" id="buy-now-btn" class="w-full text-lg text-white bg-stone-950 py-2 px-4 rounded-md hover:bg-stone-800 transition-colors flex items-center justify-center"> Buy Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const product = {
+    id: 1,
+    name: 'Vincofy 7 in 1 SalonPro Hair Styler',
+    color: 'Purple',
+    price: 9.99,
+  };
+
+  // Initialize cart state
+  let quantity = 0;
+  let isCartOpen = false;
+  let totalPrice = 0;
+  let isCartEmpty = true;
+
+  // Clear cart on page reload - no persistence
+  localStorage.removeItem('cartQuantity');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set initial cart state based on quantity
+
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCartBtn = document.getElementById('close-cart');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const incrementBtn = document.getElementById('increment-quantity');
+    const decrementBtn = document.getElementById('decrement-quantity');
+    const quantityDisplay = document.getElementById('quantity-display');
+    const removeBtn = document.getElementById('remove-item');
+    const totalPriceElement = document.getElementById('total-price');
+    const totalPriceWithShippingElement = document.getElementById('total-price-with-shipping');
+    const warningElement = document.getElementById('quantity-warning');
+    const buyNowBtn = document.getElementById('buy-now-btn');
+    const cartBadge = document.getElementById('cart-badge');
+
+    const updateCartBadge = (qty: number) => {
+      if (cartBadge) {
+        if (qty > 0) {
+          cartBadge.textContent = qty.toString();
+          cartBadge.classList.remove('hidden');
+          cartBadge.classList.add('flex');
+        } else {
+          cartBadge.classList.add('hidden');
+          cartBadge.classList.remove('flex');
+        }
+      }
+    };
+
+    if (quantity > 0) {
+      updateCartBadge(quantity);
+    }
+
+    // Function to update cart badge
+
+    // Get cart content and empty state elements for later use in updateCartUI
+    const cartContent = document.getElementById('cart-content');
+    const emptyCartMessage = document.getElementById('empty-cart-message');
+
+    if (cartContent && emptyCartMessage) {
+      if (quantity === 0) {
+        cartContent.classList.add('hidden');
+        emptyCartMessage.classList.remove('hidden');
+      } else {
+        cartContent.classList.remove('hidden');
+        emptyCartMessage.classList.add('hidden');
+      }
+    }
+
+    // Function to update cart UI
+    const updateCartUI = () => {
+      // Update empty state
+      isCartEmpty = quantity === 0;
+
+      // Show/hide appropriate cart state
+      if (cartContent && emptyCartMessage) {
+        if (isCartEmpty) {
+          cartContent.classList.add('hidden');
+          emptyCartMessage.classList.remove('hidden');
+        } else {
+          cartContent.classList.remove('hidden');
+          emptyCartMessage.classList.add('hidden');
+        }
+      }
+
+      if (quantityDisplay) quantityDisplay.textContent = quantity.toString();
+
+      const calculatedPrice = quantity * product.price;
+      if (totalPriceElement) totalPriceElement.textContent = `£${calculatedPrice.toFixed(2)}`;
+      if (totalPriceWithShippingElement) totalPriceWithShippingElement.textContent = `£${calculatedPrice.toFixed(2)}`;
+
+      // Show warning if quantity > 1
+      if (warningElement) {
+        warningElement.style.display = quantity > 1 ? 'block' : 'none';
+      }
+
+      // Disable buy button if quantity > 1 or quantity = 0
+      if (buyNowBtn) {
+        if (quantity > 1 || quantity === 0) {
+          buyNowBtn.classList.add('opacity-50', 'pointer-events-none');
+        } else {
+          buyNowBtn.classList.remove('opacity-50', 'pointer-events-none');
+        }
+      }
+
+      // Update cart badge
+      updateCartBadge(quantity);
+    };
+
+    // Open cart sidebar
+    if (addToCartBtn) {
+      addToCartBtn.addEventListener('click', () => {
+        // Always add one more product when clicking "Add to Cart"
+        quantity += 1;
+        updateCartUI();
+
+        if (cartSidebar && cartOverlay) {
+          cartSidebar.classList.add('translate-x-0');
+          cartSidebar.classList.remove('translate-x-full');
+          cartOverlay.classList.remove('hidden');
+          isCartOpen = true;
+        }
+      });
+    }
+
+    // Close cart sidebar
+    const closeCart = () => {
+      if (cartSidebar && cartOverlay) {
+        cartSidebar.classList.remove('translate-x-0');
+        cartSidebar.classList.add('translate-x-full');
+        cartOverlay.classList.add('hidden');
+        isCartOpen = false;
+      }
+    };
+
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+    // Increment quantity
+    if (incrementBtn) {
+      incrementBtn.addEventListener('click', () => {
+        quantity += 1;
+        updateCartUI();
+      });
+    }
+
+    // Decrement quantity
+    if (decrementBtn) {
+      decrementBtn.addEventListener('click', () => {
+        if (quantity > 1) {
+          // Changed from > 0 to > 1 to prevent going below 1
+          quantity -= 1;
+          updateCartUI();
+        }
+      });
+    }
+
+    // Remove item
+    if (removeBtn) {
+      removeBtn.addEventListener('click', () => {
+        quantity = 0; // Set to 0 to show empty cart state
+        updateCartUI();
+      });
+    }
+
+    // Continue shopping button
+    const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+    if (continueShoppingBtn) {
+      continueShoppingBtn.addEventListener('click', () => {
+        if (cartSidebar && cartOverlay) {
+          cartSidebar.classList.remove('translate-x-0');
+          cartSidebar.classList.add('translate-x-full');
+          cartOverlay.classList.add('hidden');
+          isCartOpen = false;
+        }
+      });
+    }
+
+    // Also make cart icon clickable to open the cart
+    const cartIcon = document.getElementById('cart-icon');
+    if (cartIcon) {
+      cartIcon.addEventListener('click', () => {
+        // Always show empty cart on first open
+        if (cartContent && emptyCartMessage) {
+          cartContent.classList.add('hidden');
+          emptyCartMessage.classList.remove('hidden');
+        }
+
+        if (cartSidebar && cartOverlay) {
+          cartSidebar.classList.add('translate-x-0');
+          cartSidebar.classList.remove('translate-x-full');
+          cartOverlay.classList.remove('hidden');
+          isCartOpen = true;
+        }
+      });
+    }
+  });
+</script>
